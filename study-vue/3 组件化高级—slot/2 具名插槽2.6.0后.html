@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Title</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <my-component>
+        <!-- 注意 v-slot 只能添加在 <template> 上 (只有一种例外情况)，这一点和已经废弃的 slot attribute 不同。 -->
+        <template v-slot:left>
+          <span>返回</span>
+        </template>
+        <!-- 还可以使用缩写，但是#后必须有插槽名 -->
+        <template #center>
+          <input type="text" placeholder="搜索" />
+        </template>
+        <template v-slot:right>
+          <span>分类</span>
+        </template>
+      </my-component>
+      <hr />
+      <my-component> </my-component>
+      <hr />
+      <my-component> </my-component>
+      <hr />
+      <!-- 不指定具名插槽，则替换default的插槽 -->
+      <my-component>😂</my-component>
+      <hr />
+    </div>
+
+    <template id="myComponent">
+      <div>
+        <h2>组件</h2>
+        <!-- 若没有<slot></slot>标签，则这个组件只能显示h2（当然可以自定义h2中的内容，此处不再赘述），
+            其他时候想添加一个button，添加一个img都不可以
+            但是当有了<slot></slot>标签后，则可以自定义显示的东西。还可以有默认值 -->
+        <slot name="left">
+          <span>左边</span>
+        </slot>
+        <slot name="center">
+          <span>中间</span>
+        </slot>
+        <slot name="right">
+          <span>右边</span>
+        </slot>
+        <slot></slot>
+      </div>
+    </template>
+
+    <script src="/lib/vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          message: "Hello",
+        },
+        methods: {},
+        components: {
+          MyComponent: {
+            template: "#myComponent",
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

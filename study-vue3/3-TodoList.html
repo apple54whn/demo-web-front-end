@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="root">
+      <div>
+        <input v-model="item" />
+        <button @click="handleAddItem" :title="item">添加</button>
+        <ul>
+          <li v-for="(item,index) in list">
+            <todo-item
+              :item="item"
+              :index="index"
+              @handle-delete-item="handleDeleteItem"
+            />
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 组件模版分离 -->
+    <template id="todo-item">
+      <span>{{index+1}}</span>
+      <span>--</span>
+      <span>{{item}}</span>
+      <button @click="handleDeleteItem(index)">删除</button>
+    </template>
+
+    <script>
+      let options = {
+        data() {
+          return {
+            item: '',
+            list: [],
+          }
+        },
+        methods: {
+          handleAddItem() {
+            this.list.push(this.item)
+            this.item = ''
+          },
+          handleDeleteItem(index) {
+            this.list.splice(index, 1)
+          },
+        },
+      }
+
+      // Vue.createApp 创建 Vue 应用，存储到 app 中
+      //传入的参数表示，这个应用最外层的组件，该如何展示
+      const app = Vue.createApp(options)
+
+      // 组件
+      app.component('todo-item', {
+        template: `#todo-item`,
+        props: {
+          item: {
+            type: String,
+            default: '',
+          },
+          index: {
+            type: Number,
+            default: 0,
+          },
+        },
+        emits: ['handle-delete-item'],
+        methods: {
+          handleDeleteItem(index) {
+            this.$emit('handle-delete-item', index)
+          },
+        },
+      })
+
+      // mount 装载到哪里，即在 id = root 的 html 中使用 vue
+      // vm 就是 vue 应用的根组件
+      // mvvm 模式，m model 数据， v view 视图，vm viewModal视图数据连接层
+      const vm = app.mount('#root')
+
+      // 改变数据
+      // vm.$data.item = '测试课程'
+      // vm.item = '测试课程'
+    </script>
+  </body>
+</html>

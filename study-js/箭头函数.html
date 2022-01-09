@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="btn">点这里</button>
+
+  <script>
+    var button = {
+      clicked: false,
+      // click: () => {
+      //   this.clicked = true;
+      //   // this 指向 window
+      //   console.log(this === button); // false
+      //   console.log(this);
+
+      // }
+      click: function () {
+        this.clicked = true;
+        // this 指向 window
+        console.log(this === button); // false
+        console.log(this);
+      }
+    }
+
+
+
+    const $btn = document.getElementById('btn')
+    $btn.addEventListener('click', button.click)
+
+
+    // const whatsMyContext = () => {
+    //   return this
+    // }
+    // // 函数直接调用
+    // console.log(whatsMyContext() === window);// true
+
+
+    // // 对象字面量的方法
+    // const ninja1 = {
+    //   getMyThis: whatsMyContext
+    // }
+    // console.log(ninja1.getMyThis() === window);// true
+
+
+    // // 构造函数
+    // // function Ninja() {
+    // //   this.getMyThis = whatsMyContext
+    // // }
+    // class Ninja {
+    //   constructor() {
+    //     this.getMyThis = whatsMyContext
+    //   }
+    // }
+    // const ninja2 = new Ninja()
+    // console.log(ninja2.getMyThis() === window);// true
+
+
+
+
+
+
+    // // 对象字面量的方法
+    // const ninja3 = {
+    //   getMyThis: () => {
+    //     return this
+    //   }
+    // }
+    // console.log(ninja3.getMyThis() === window);// true
+
+
+    // // 构造函数
+    // // function Ninja2() {
+    // //   this.getMyThis = () => {
+    // //     return this
+    // //   }
+    // // }
+    // class Ninja2 {
+    //   constructor() {
+    //     this.getMyThis = () => {
+    //       return this
+    //     }
+    //   }
+    // }
+    // const ninja4 = new Ninja2()
+    // console.log(ninja4.getMyThis() === ninja4);// true
+
+
+    // 若定义在构造函数中，则指向包裹this对象的作用域即构造函数
+    // class Employee2 {
+    //   constructor(name, age) {
+    //     this.name = name;
+    //     this.age = age;
+    //     this.goHome = function () {
+    //       console.log(this.name + "回家");
+    //     };
+    //     // 能解决问题但不推荐使用箭头函数定义对象的方法
+    //     this.signIn = () => {
+    //       console.log(this.name + "去签到");
+    //     };
+    //   }
+    // }
+    // var emp = new Employee2("app", 8);
+    // emp.signIn(); // app去签到
+    // emp.goHome();// app回家
+
+
+
+
+    // 函数直接调用
+    function whatsMyContext() {
+      return this
+    }
+    console.log(whatsMyContext() === window);// true
+
+
+    // 这里主要指对象字面量
+    const ninja1 = {
+      getMyThis: whatsMyContext,
+      getMyThis2: function () {
+        return this
+      },
+      getMyThis3: () => {
+        return this
+      }
+
+    }
+    console.log(ninja1.getMyThis() === ninja1);// true
+    console.log(ninja1.getMyThis2() === ninja1);// true
+    console.log(ninja1.getMyThis3() === ninja1);// false
+
+    // 这其实属于构造函数调用
+    // function Ninja() {
+    //   this.getMyThis = whatsMyContext
+    // }
+    class Ninja {
+      constructor() {
+        this.getMyThis = whatsMyContext
+      }
+    }
+    const ninja2 = new Ninja()
+    console.log(ninja2.getMyThis() === ninja2);// true
+
+  </script>
+</body>
+
+</html>

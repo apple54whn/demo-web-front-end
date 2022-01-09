@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="radio">
+      <h2>radio值获取</h2>
+      <div>
+        <input
+          type="radio"
+          value="0"
+          name="radioStatus"
+          checked="checked"
+        />好评 <input type="radio" value="1" name="radioStatus" />差评
+
+        <button id="getRadioStatus">getRadioStatus</button>
+      </div>
+    </div>
+
+    <div id="checkbox">
+      <h2>checkbox值获取</h2>
+      <div>
+        <input type="checkbox" value="0" name="checkboxStatus" checked />唱
+        <input type="checkbox" value="1" name="checkboxStatus" />跳
+        <input type="checkbox" value="2" name="checkboxStatus" />rap
+        <input type="checkbox" value="3" name="checkboxStatus" />篮球
+
+        <button id="getCheckboxStatus">getCheckboxStatus</button>
+      </div>
+    </div>
+
+    <div id="select">
+      <h2>select值获取</h2>
+      <div>
+        <select name="selectStatus" id="selectStatus">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+
+        <button id="getSelectStatus">getSelectStatus</button>
+      </div>
+    </div>
+
+    <script>
+      const getRadioStatus = document.getElementById('getRadioStatus')
+      getRadioStatus.addEventListener('click', function () {
+        // $('input:radio[name="status"]:checked').val()// jQuery方式，除了:radio外其实是CSS选择器
+        const test = document.querySelector('input[name="radioStatus"]:checked') //CSS选择器，type=radio一般命名规范时可以省略
+        console.log(test.value)
+      })
+
+      const getCheckboxStatus = document.getElementById('getCheckboxStatus')
+      getCheckboxStatus.addEventListener('click', function () {
+        // $('input:checkbox').each(function() {
+        //     if ($(this).attr('checked') ==true) {
+        //         alert($(this).val());
+        //     }
+        // });
+        let nodeList = document.querySelectorAll(
+          'input[name="checkboxStatus"]:checked'
+        )
+        console.log(nodeList) // NodeList 是对象，不是数组，无法使用 .map 流
+        nodeList.forEach((item) => console.log(item.value))
+      })
+
+      const getSelectStatus = document.getElementById('getSelectStatus')
+      getSelectStatus.addEventListener('click', function () {
+        // $('select[name="selectStatus"]).val()// jQuery，就是CSS选择器，直接使用 #id 也可以！！！
+        const select = document.querySelector('select[name="selectStatus"]') //CSS选择器，直接使用 #id 也可以！！！
+        console.log(select.value)
+
+        const index = select.selectedIndex // 索引，从0开始
+        const value = select.options[index].value //要的值
+      })
+    </script>
+  </body>
+</html>

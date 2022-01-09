@@ -1,0 +1,215 @@
+.w {
+  width: 1100px;
+}
+
+.hot {
+  color: red;
+}
+
+body {
+  font: 14px/1.5 Helvetica Neue, Helvetica, Arial, Hiragino Sans GB,
+    \5fae\8f6f\96c5\9ed1, tahoma, simsun, \5b8b\4f53;
+}
+
+.container {
+  height: 700px;
+  /* background-color: skyblue; */
+  margin: 100px auto;
+  border-top: 1px solid #e9e9e9;
+}
+
+/* top */
+.container .top {
+  height: 74px;
+  padding-top: 25px;
+}
+
+.container .top h2 {
+  height: 26px;
+  line-height: 26px;
+  color: #333;
+  font-size: 22px;
+  font-weight: 700;
+  margin-right: 16px;
+}
+
+.container .top > * {
+  height: 26px;
+  line-height: 26px;
+  margin-right: 8px;
+}
+/* top */
+
+/* content */
+.container .content .left-side {
+  position: relative;
+  width: 330px;
+  height: 541px;
+}
+
+.container .content .left-side img {
+  height: 542px;
+}
+.container .content .left-side .category {
+  position: absolute;
+  left: 24px;
+  bottom: 24px;
+}
+
+.container .content .left-side .category li {
+  float: left;
+  width: 82px;
+  height: 42px;
+  line-height: 42px;
+  margin: 0 18px 8px 0;
+  border: 1px solid #eee;
+  border-radius: 21px;
+  text-align: center;
+  color: #333;
+  background-color: #fff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+  font-size: 12px;
+}
+
+.container .content .left-side .category li:hover {
+  color: red;
+  cursor: pointer;
+}
+
+.container .content .middle-side {
+  width: 550px;
+  height: 542px;
+}
+
+.container .content .middle-side ul li {
+  float: left;
+  width: 275px;
+  height: 271px;
+  border-top: 1px solid #eee;
+  border-right: 1px solid #eee;
+  padding: 30px 0 0 0;
+  text-align: center;
+}
+
+.container .content .middle-side ul li h2 {
+  font-size: 24px;
+}
+
+.container .content .middle-side ul li:nth-last-child(-n + 2) {
+  border-bottom: 1px solid #eee;
+}
+
+.container .content .right-side {
+  width: 220px;
+  height: 542px;
+}
+
+.container .content .right-side .hot-sale .pointer {
+  position: relative;
+  width: 220px;
+  height: 62px;
+  line-height: 62px;
+  padding: 0 0 0 10px;
+  border-top: 1px solid #eee;
+  border-right: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+.container .content .right-side .hot-sale .pointer h3 {
+  float: left;
+}
+
+.container .content .right-side .hot-sale .pointer ul {
+  position: absolute;
+  right: 5%;
+}
+
+.container .content .right-side .hot-sale .pointer ul li {
+  display: inline-block;
+  margin-right: 2px;
+  border: 4px solid #eee;
+  border-radius: 4px;
+}
+
+.container .content .right-side .hot-sale .pointer ul li:hover {
+  border: 4px solid #000;
+  transition: all 0.25s;
+}
+
+.container .content .right-side .hot-sale .items li {
+  width: 220px;
+  height: 120px;
+  border-right: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  padding: 25px 5px 0 0;
+  font-size: 12px;
+  color: #666;
+}
+.container .content .right-side .hot-sale .items li img {
+  float: left;
+}
+
+.container .content .right-side .hot-sale .items li img:hover {
+  float: left;
+}
+
+.container .content .right-side .hot-sale .items li a:hover {
+  text-decoration: underline;
+}
+
+.container .content .right-side .hot-sale .items li .price {
+  font-size: 20px;
+  font-weight: 700;
+  color: red;
+}
+
+.container .content .right-side .hot-sale .items li .old-price {
+  font-size: 14px;
+  text-decoration: line-through;
+  margin-left: 12px;
+}
+
+.container .foot {
+  margin-top: 20px;
+  border: 1px solid #eee;
+}
+
+.container .foot .title {
+  height: 48px;
+  line-height: 48px;
+  text-indent: 20px;
+}
+
+.container .foot .brand {
+  width: 1100px;
+  height: 168px;
+  border-top: 1px solid #eee;
+}
+
+.container .foot .brand ul li {
+  position: relative;
+  width: 220px;
+  float: left;
+  text-align: center;
+  line-height: 168px;
+  border-right: 1px solid #eee;
+}
+
+.container .foot .brand ul li:last-child {
+  border-right: 0;
+}
+
+.container .foot .brand ul li .fav {
+  display: none;
+  cursor: pointer;
+}
+
+.container .foot .brand ul li:hover .fav {
+  display: block;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background-color: red;
+  top: 10px;
+  right: 10px;
+}

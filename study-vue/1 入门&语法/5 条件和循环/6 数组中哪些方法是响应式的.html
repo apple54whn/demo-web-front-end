@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Title</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <ul>
+        <li v-for="item in letters">{{item}}</li>
+      </ul>
+      <button @click="arrayMethod">btn</button>
+    </div>
+
+    <script src="/lib/vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          letters: ["a", "b", "c", "d"],
+        },
+        methods: {
+          arrayMethod() {
+            // push 向末尾添加
+            // this.letters.push("e");
+            // this.letters.push("e"，"f","g");
+            // pop 从末尾删除
+            // this.letters.pop();
+            // shift 从首部删除
+            // this.letters.shift();
+            // unshift 向首部添加
+            // this.letters.unshift("-a");
+            // this.letters.unshift("-c", "-b", "-a"); // ['-c','-b','-a','a','b','c']
+            // splice 删除并添加一个值，修改一个值时使用。增删改都可以完成
+            this.letters.splice(1, 1, "bbb");
+            Vue.set(this.letters, 1, "bbbbb");
+            // reverse 反转
+            // this.letters.reverse();
+            // sort 排序
+            // this.letters.sort();
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Title</title>
+    <style></style>
+  </head>
+
+  <body>
+    <div id="app">
+      <h2 :style="[baseStyle1, baseStyle2]">Hello</h2>
+      <h2 :style="myBaseStyleMethod()">Hello</h2>
+      <h2 :style="myBaseStyleComputed">Hello</h2>
+    </div>
+
+    <script src="/lib/vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          // style 中也是键制对，必须用对象
+          baseStyle1: { fontSize: "32px" },
+          baseStyle2: { background: "skyblue" },
+        },
+        computed: {
+          myBaseStyleComputed: function () {
+            return [this.baseStyle1, this.baseStyle2];
+          },
+        },
+        methods: {
+          myBaseStyleMethod: function () {
+            return [this.baseStyle1, this.baseStyle2];
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

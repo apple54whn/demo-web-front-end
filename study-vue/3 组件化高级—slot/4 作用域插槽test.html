@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Title</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <my-component></my-component>
+      <my-component :languanges="outerLanguages">
+        <!-- <template v-slot:default="props"> -->
+        <!-- <template v-slot="props"> -->
+        <template #default="props">
+          {{props.languanges.join('-')}}
+        </template>
+      </my-component>
+    </div>
+
+    <template id="myComponent">
+      <div>
+        <slot :languanges="languanges">
+          <!-- slot默认值 -->
+          <ul>
+            <li v-for="lang in languanges">{{lang}}</li>
+          </ul>
+        </slot>
+      </div>
+    </template>
+
+    <script src="/lib/vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data() {
+          return {
+            outerLanguages: ["Java", "Python", "Go", "JavaScript", "C"],
+          };
+        },
+        methods: {},
+        components: {
+          MyComponent: {
+            template: "#myComponent",
+            props: {
+              languanges: {
+                type: Array,
+                default() {
+                  return ["C", "C++"];
+                },
+                required: true,
+              },
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

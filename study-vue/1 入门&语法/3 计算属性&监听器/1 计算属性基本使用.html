@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Title</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <!-- 在模板中放入太多的逻辑会让模板过重且难以维护 -->
+      <h2>{{ message.split('').reverse().join('') }}</h2>
+      <!-- 计算属性 -->
+      <h2>{{ reversedMessage }}</h2>
+
+      <!-- 在模板中放入太多的逻辑会让模板过重且难以维护 -->
+      <h2>{{firstName +" "+ lastName}}</h2>
+      <!-- 方法 -->
+      <h2>{{fullNameMethod()}}</h2>
+      <!-- 计算属性 -->
+      <h2>{{fullNameComputed}}</h2>
+    </div>
+
+    <script src="/lib/vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          message: "Hello",
+          firstName: "Steven",
+          lastName: "Jobs",
+        },
+        computed: {
+          reversedMessage() {
+            return this.message.split("").reverse().join("");
+          },
+          fullNameComputed() {
+            console.log("fullName computed");
+            return this.firstName + " " + this.lastName;
+          },
+        },
+        methods: {
+          fullNameMethod() {
+            console.log("fullName methods");
+            return this.firstName + " " + this.lastName;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Title</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <!-- 3 使用组件 -->
+      <!-- 组件必须挂载在某个 Vue 实例下，否则不生效 -->
+      <my-component2></my-component2>
+
+      <!-- my-component1并没有在 app 的 Vue 实例中注册，无法使用 -->
+      <my-component1></my-component1>
+    </div>
+
+    <script src="/lib/vue.js"></script>
+    <script>
+      // 创建组件构造器1（子组件）
+      const myComponent1 = Vue.extend({
+        template: `
+            <div>
+                <h2>标题1</h2>
+                <p>内容1</p>
+            </div>`,
+      });
+
+      // 创建组件构造器2（父组件）
+      const myComponent2 = Vue.extend({
+        template: `
+            <div>
+                <h2>标题2</h2>
+                <p>内容2</p>
+                <my-component1></my-component1>
+            </div>`,
+        components: {
+          "my-component1": myComponent1,
+        },
+      });
+
+      // root 组件
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          message: "Hello",
+        },
+        components: {
+          "my-component2": myComponent2,
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,340 @@
+@font-face {
+  font-family: "iconfont";
+  src: url("iconfont.eot");
+  src: url("iconfont.eot?#iefix") format("embedded-opentype"),
+    url("iconfont.woff2") format("woff2"), url("iconfont.woff") format("woff"),
+    url("iconfont.ttf") format("truetype"),
+    url("iconfont.svg#iconfont") format("svg");
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.w {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.style_red {
+  color: #f30213;
+}
+.shortcut {
+  height: 31px;
+  background-color: #e3e4e5;
+  line-height: 31px;
+}
+
+.shortcut ul li {
+  float: left;
+}
+
+/* 所有图标对齐文本中线，不是基线 */
+.iconfont {
+  vertical-align: middle;
+}
+
+.shortcut .fr ul li:nth-child(2n) {
+  width: 1px;
+  height: 12px;
+  /* 上外边距已设置，下边距已经符合要求 */
+  margin: 9px 15px 0;
+  background-color: #666;
+}
+
+/* 伪元素实现阿里iconfont字体 */
+.shortcut .fr ul .icon-arrow-dow::after {
+  font-family: "iconfont";
+  content: "\e7b2";
+  margin-left: 5px;
+}
+
+.head {
+  position: relative;
+  height: 87px;
+}
+
+.head .logo {
+  position: absolute;
+  top: 25px;
+  width: 134px;
+  height: 42px;
+  /* background-color: pink; */
+}
+
+.head .logo a {
+  display: block;
+  width: 134px;
+  height: 42px;
+  background: url(../images/jd_logo.png) no-repeat;
+  font-size: 0;
+}
+
+.search {
+  position: absolute;
+  left: 346px;
+  top: 30px;
+  width: 538px;
+  height: 36px;
+  border: 2px solid #f30213;
+}
+
+.search input {
+  float: left;
+  width: 454px;
+  height: 32px;
+  padding: 0 10px;
+}
+
+.search button {
+  width: 80px;
+  height: 32px;
+  background-color: #f30213;
+  font-size: 16px;
+  color: #fff;
+}
+
+.hotwords {
+  position: absolute;
+  top: 70px;
+  left: 346px;
+}
+
+.hotwords a {
+  margin: 0 10px;
+}
+
+.shopcar {
+  position: absolute;
+  top: 30px;
+  right: 60px;
+  width: 140px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  border: 1px solid #dfdfdf;
+  background-color: #f9f9f9;
+}
+
+.shopcar::before {
+  content: "\e763";
+  font-family: iconfont;
+  font-size: 24px;
+  color: #f30213;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.shopcar::after {
+  content: "\e744";
+  font-family: iconfont;
+  font-size: 20px;
+  vertical-align: middle;
+  margin-left: 5px;
+}
+
+.shopcar:hover {
+  cursor: pointer;
+}
+
+.shopcar .shop-amount {
+  position: absolute;
+  top: -5px;
+  left: 105px;
+  height: 14px;
+  padding: 0 5px;
+  line-height: 14px;
+  color: #fff;
+  border-radius: 7px;
+  background-color: #f30213;
+}
+
+.nav {
+  height: 47px;
+  margin-top: 20px;
+  border-bottom: 2px solid #f30213;
+}
+
+.nav .dropdown {
+  float: left;
+  width: 210px;
+  height: 45px;
+  background-color: #f30213;
+}
+
+.nav .dropdown .dt {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+  line-height: 45px;
+}
+
+/* nva start */
+.nav .dropdown .dd {
+  /* 展示时先放出来 */
+  display: block;
+}
+
+.nav .dropdown:hover .dd {
+  display: block;
+}
+
+.nav .dropdown .dd li {
+  height: 36px;
+  padding: 10px 0 0 10px;
+  font-size: 14px;
+  background-color: #f30213;
+}
+
+.nav .dropdown .dd a {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.cate_menu_line {
+  padding: 0 2px;
+  color: #fff;
+}
+
+.nav .dropdown .dd li:hover {
+  border: 1px solid #f30213;
+  border-right: 0;
+  background-color: #fff;
+}
+
+.nav .dropdown .dd li:hover a,
+.cate_menu_line {
+  color: #f30213;
+}
+
+.nav .dropdown .dd li a:hover {
+  color: burlywood;
+}
+/* nva end */
+
+.nav .navitems ul li {
+  float: left;
+}
+
+.nav .navitems ul li a {
+  display: block;
+  height: 45px;
+  line-height: 45px;
+  font-size: 16px;
+  padding: 0 25px;
+}
+
+/* footer */
+footer {
+  height: 415px;
+  background-color: #f5f5f5;
+}
+
+.mod_service {
+  height: 103px;
+  padding: 30px 0;
+}
+
+.mod_service ul li {
+  float: left;
+  width: 297px;
+  height: 42px;
+  padding-left: 35px;
+}
+
+.mod_service ul li:nth-child(1) h5 {
+  float: left;
+  width: 46px;
+  height: 42px;
+  background: url(../images/ico_service.png) no-repeat 0 0;
+}
+
+.mod_service ul li:nth-child(2) h5 {
+  float: left;
+  width: 46px;
+  height: 42px;
+  background: url(../images/ico_service.png) no-repeat 0 -43px;
+}
+
+.mod_service ul li:nth-child(3) h5 {
+  float: left;
+  width: 46px;
+  height: 42px;
+  background: url(../images/ico_service.png) no-repeat 0 -86px;
+}
+
+.mod_service ul li:nth-child(4) h5 {
+  float: left;
+  width: 46px;
+  height: 42px;
+  background: url(../images/ico_service.png) no-repeat 0 -129px;
+}
+
+.mod_service ul li h4 {
+  height: 42px;
+  line-height: 42px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+footer .bottom-line {
+  height: 0;
+  border: 1px solid #dedede;
+}
+
+footer .help {
+  height: 200px;
+  padding: 20px 0;
+}
+footer .help dl {
+  float: left;
+}
+
+footer .help dt,
+dd {
+  width: 200px;
+  height: 22px;
+}
+
+footer .help dt {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+footer .copyright {
+  margin-top: 20px;
+}
+
+footer .copyright .links {
+  margin: 0 auto;
+}
+
+footer .copyright .links ul li,
+.copyright_split {
+  float: left;
+}
+
+footer .copyright .links ul .copyright_split {
+  margin: 0 10px;
+}
+
+footer .copyright .info {
+  text-align: center;
+  margin-top: 20px;
+  color: #999;
+}

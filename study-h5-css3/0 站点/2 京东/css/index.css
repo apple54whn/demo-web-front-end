@@ -1,0 +1,121 @@
+.main {
+    width: 980px;
+    height: 455px;
+    margin-left: 220px;
+    margin-top: 10px;
+}
+
+.focus {
+    float: left;
+    width: 721px;
+    height: 100%;
+    background: url(../upload/focus1.png);
+}
+
+.newsflash {
+    float: right;
+    width: 250px;
+    height: 100%;
+}
+
+.news {
+    height: 165px;
+}
+
+.ad {
+    margin-top: 5px;
+}
+
+.news {
+    border: 1px solid #e4e4e4;
+}
+
+.news .news-hd {
+    height: 33px;
+    line-height: 33px;
+    padding: 0 15px;
+    border-bottom: 1px dotted #e4e4e4;
+}
+
+.news .news-hd h5{
+    float: left;
+    font-size: 14px;
+}
+
+.news .news-hd .more {
+    float: right;
+}
+
+.news .news-hd .more::after {
+    content: '\e744';
+    font-family: 'iconfont';
+}
+.news .news-bd {
+    padding: 5px 15px 0;
+}
+
+.news-bd li {
+    height: 24px;
+    line-height: 24px;
+    /*1. 先强制一行内显示文本，默认 normal 自动换行*/
+    white-space: nowrap;
+    /*2. 超出的部分隐藏*/ 
+    overflow: hidden;
+    /*3. 文字用省略号替代超出的部分*/ 
+    text-overflow: ellipsis;
+}
+
+.news-bd li a {
+    vertical-align: middle;
+}
+
+.news-bd ul li a .hot {
+    color: #e1251b;
+    background-color: rgba(225,37,27,.08);
+    
+}
+
+.lifeservice {
+    height: 209px;
+    border: 1px solid #e4e4e4;
+    border-top: 0;
+    overflow: hidden;
+}
+
+.lifeservice ul {
+    width: 252px;
+}
+
+.lifeservice ul li {
+    position: relative;
+    float: left;
+    width: 63px;
+    height: 71px;
+    border-right: 1px solid #e4e4e4;
+    border-bottom: 1px solid #e4e4e4;
+    text-align: center;
+}
+
+.lifeservice ul li:hover {
+    cursor: pointer;
+}
+
+.lifeservice ul>li:nth-child(3n)::after {
+    content: '减';
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    width: 15px;
+    height: 15px;
+    color: #fff;
+    background-color: #e1251b;
+    font-weight: 700;
+}
+
+.lifeservice ul li i {
+    display: inline-block;
+    width: 24px;
+    height: 28px;
+    margin-top: 12px;
+    background: url(../images/icons.png) no-repeat -17px -15px;
+}

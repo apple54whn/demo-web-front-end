@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script>
+      const options = {
+        template: `<div>{{counter}}</div>`,
+        data() {
+          return {
+            counter: 1,
+          }
+        },
+        mounted() {
+          console.log('mounted: 页面加载完成')
+          setInterval(() => {
+            // 等同于 this.$data.count++, 简写
+            this.counter++
+          }, 1000)
+        },
+      }
+
+      // Vue.createApp 创建 Vue 应用
+      // mount 装载到哪里，即在 id = root 的 html 中使用 vue
+      Vue.createApp(options).mount('#root')
+    </script>
+  </body>
+</html>

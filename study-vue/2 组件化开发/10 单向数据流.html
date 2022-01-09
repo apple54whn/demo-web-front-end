@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Title</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <my-component
+        :num1="number1"
+        :num2="number2"
+        @change-number1="changeNumber1"
+        @change-number2="changeNumber2"
+      ></my-component>
+    </div>
+
+    <template id="myComponent">
+      <div>
+        props:{{num1}} <br />
+        data:{{dNum1}} <br />
+
+        props:<input type="text" v-model="num1" />不推荐直接修改<br />
+        data:<input
+          type="text"
+          v-model="dNum1"
+        />通过data修改，但没有影响父组件中的值<br />
+        props:
+        <input
+          type="text"
+          :value="dNum1"
+          @input="num1Input"
+        />通过$emit修改父组件中传递给子组件的值，来间接修改props值。修改
+        data，也可以直接绑定props的值<br />
+        <hr />
+
+        props:{{num2}} <br />
+        data:{{dNum2}} <br />
+        props:<input type="text" v-model="num2" />不推荐直接修改<br />
+        data:<input
+          type="text"
+          v-model="dNum2"
+        />通过data修改，但没有影响父组件中的值<br />
+        props:
+        <input
+          type="text"
+          :value="dNum2"
+          @input="num2Input"
+        />通过$emit修改父组件中传递给子组件的值，来间接修改props值。修改
+        data，也可以直接绑定props的值<br />
+      </div>
+    </template>
+
+    <script src="/lib/vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data() {
+          return {
+            number1: 1,
+            number2: 2,
+          };
+        },
+        methods: {
+          changeNumber1(value) {
+            this.number1 = Number.parseInt(value);
+          },
+          changeNumber2(value) {
+            this.number2 = Number.parseInt(value);
+          },
+        },
+        components: {
+          MyComponent: {
+            template: "#myComponent",
+            data() {
+              return {
+                dNum1: this.num1,
+                dNum2: this.num2,
+              };
+            },
+            props: {
+              num1: {
+                type: Number,
+                default: 1,
+                required: true,
+              },
+              num2: {
+                type: Number,
+                default: 2,
+                required: true,
+              },
+            },
+            methods: {
+              num1Input(event) {
+                console.log(event.target.value);
+                this.$emit("change-number1", event.target.value);
+
+                // 注意，子组件中 data 数据不会随父组件更新了自组件的 props 后更改
+                this.dNum1 = event.target.value;
+              },
+              num2Input(event) {
+                console.log(event.target.value);
+                this.$emit("change-number2", event.target.value);
+
+                // 注意，子组件中 data 数据不会随父组件更新了自组件的 props 后更改
+                this.dNum2 = event.target.value;
+              },
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button>按钮1</button>
+    <button>按钮2</button>
+    <button>按钮3</button>
+    <button>按钮4</button>
+    <button>按钮5</button>
+    <script>
+      var btns = document.getElementsByTagName("button");
+
+      //   var
+      //   for (var i = 0; i < btns.length; i++) {
+      //     btns[i].addEventListener("click", function () {
+      //       console.log(`按了第${i}个按钮`); // 按了第5个按钮。无论怎么都是输出这个
+      //     });
+      //   }
+
+      //   立即执行函数
+      //   for (var i = 0; i < btns.length; i++) {
+      //     (function (num) {
+      //       btns[i].addEventListener("click", function () {
+      //         console.log(`按了第${num}个按钮`); // 按了第5个按钮。无论怎么都是输出这个
+      //       });
+      //     })(i);
+      //   }
+
+      // let
+      for (let i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function () {
+          console.log(`按了第${i}个按钮`); // 按了第5个按钮。无论怎么都是输出这个
+        });
+      }
+
+      /*
+        因为函数中的打印语句引用的 i 是一个外部**变量**，**不是传入的参数，不受函数作用域控制**，绑定事件的循环中 i 一直在改变，最终输出时，获取到的变量都是 5！**全局变量污染**！
+
+        当使用立即执行函数后，由于i被当作参数传入立即执行函数，此时再去修改i都不会影响函数中的值。
+
+        当使用let后，`{}`中的i也是属于该作用域的，不受外部i的改变而变化
+      */
+    </script>
+  </body>
+</html>

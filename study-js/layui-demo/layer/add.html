@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <title>开始使用 layui</title>
+    <link rel="stylesheet" href="../lib/layui/layui-v2.6.8/css/layui.css" />
+  </head>
+  <body>
+    <!-- 你的 HTML 代码 -->
+
+    <h1>add</h2>
+    <h1>add</h2>
+    <h1>add</h2>
+    <h1>add</h2>
+    <h1>add</h2>
+
+      <button type="button" class="layui-btn layui-btn-normal" id="add">
+      add2
+    </button>
+
+    <script src="../lib/layui/layui-v2.6.8/layui.js"></script>
+    <script>
+      for (let index = 0; index < 10000; index++) {
+        console.log(index)
+      }
+    </script>
+    <script>
+      var method // 必须var，全局变量，可以让父页面调用
+      let data
+      let returnData = { name: '*_H', list: [1, 2, 3] }
+      layui.use(['layer', 'form'], function () {
+        var layer = layui.layer,
+          form = layui.form
+
+        const hrefObj = layui.url()
+        console.log('hrefObj', hrefObj)
+
+        const router = layui.router()
+        console.log('router', router)
+
+        window.onload = function () {
+          console.log('onload')
+            // console.log('此时无法获取data哦', data)
+          // layer 的 success 会在 onload 执行后执行，此时HTML渲染完毕！
+        }
+
+
+        const addEl = document.getElementById('add')
+        addEl.addEventListener('click', function () {
+          layer.open({
+            type: 2,
+            area: ['100%', '100%'],
+            fixed: false, //不固定
+            maxmin: true,
+            content: 'add2.html?id=666',
+            btn: ['确定', '取消'],
+            skin: 'demo-class',
+            success: function (layero, index) {
+              // layer 的 success 会在 onload 执行后执行，此时HTMLS都渲染完毕！JS不一定，有时JS（按顺序）执行时间太长。
+              // 所以这里传递复杂参数还是得使用 子页面DOM存储，或者在子页面调用 parent 处理 DOM或变量或方法
+              console.log('success')
+              layer.setTop(layero)
+              var iframeWin = window[layero.find('iframe')[0]['name']] //得到iframe页的窗口对象，执行iframe页的方法
+              // 这里的method.transferData可能都没有执行到，会找不到！！！
+              iframeWin.method.transferData({ id: 666, name: 'conanan' })
+              // layer.iframeAuto(index)
+            },
+            yes: function (index, layero) {
+              // var index2 = layer.load(2, {
+              //   id: '9sfsfs99999fs',
+              //   area: ['1500px', '100px'],
+              //   zIndex: 99999999,
+              // })
+              var iframeWin = window[layero.find('iframe')[0]['name']] //得到iframe页的窗口对象，执行iframe页的方法
+              // 需要防抖函数来保证不被重复点击
+              const returnData = iframeWin.method.saveData()
+              console.log('returnData', returnData)
+              console.log('haaaaaaaaaaaaaaaaa')
+              // layer.close(index2)
+              return false
+            },
+          })
+        })
+
+
+        method = {
+          transferData: function (obj) {
+            // 接收父页面传值
+            data = obj
+            console.log('transferData', data)
+            method.init()
+          },
+          init() {
+            // 可以执行 Ajax 等初始化查询操作
+            console.log('init', data)
+          },
+          saveData() {
+            // 保存并返回值给父页面
+            let l = parent.layer.load(1)
+
+            setTimeout(()=>{
+              layer.msg(
+              'saveData success...',
+              {
+                tipsMore: true,
+                icon: 1,
+              },
+              function () {
+                var index = parent.layer.getFrameIndex(window.name) //先得到当前iframe层的索引
+                parent.layer.close(index) //再执行关闭
+                parent.layer.close(l)
+              }
+            )
+            }, 2000)
+            
+          },
+        }
+
+        console.log('666')
+      })
+    </script>
+  </body>
+</html>

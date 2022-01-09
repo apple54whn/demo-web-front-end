@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Title</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <outer-component ref="a"></outer-component>
+    </div>
+
+    <template id="outerComponent">
+      <div>
+        <inner-component></inner-component>
+      </div>
+    </template>
+
+    <template id="innerComponent">
+      <div>
+        <div>我是子组件</div>
+        <button @click="btnClick">子组件按钮</button>
+      </div>
+    </template>
+
+    <script src="/lib/vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          message: "Hello Vue",
+        },
+        components: {
+          OuterComponent: {
+            template: "#outerComponent",
+            data() {
+              return {
+                message: "Hello OuterComponent",
+              };
+            },
+            components: {
+              innerComponent: {
+                template: "#innerComponent",
+                methods: {
+                  btnClick() {
+                    // 打印出的为 VueComponent。基本不会使用
+                    console.log(this.$parent);
+                    console.log(this.$parent.message);
+
+                    // 打印出的为 Vue。基本不会使用，以后 Vue 实例中仅仅会放 Router 等，不会放数据，方法等
+                    console.log(this.$root);
+                    console.log(this.$root.message);
+                  },
+                },
+              },
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

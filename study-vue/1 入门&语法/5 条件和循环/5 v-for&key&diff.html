@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Title</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <ul>
+        <li v-for="(item,index) in array">{{item}}：<input type="text" /></li>
+      </ul>
+      <ul>
+        <li v-for="(item,index) in array" :key="item">
+          {{item}}：<input type="text" />
+        </li>
+      </ul>
+      <button @click="add">在1和2间添加</button>
+    </div>
+
+    <script src="/lib/vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          message: "Hello",
+          array: [1, 2, 3],
+        },
+        methods: {
+          add() {
+            this.array.splice(1, 0, 9);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

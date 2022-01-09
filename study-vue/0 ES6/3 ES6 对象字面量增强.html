@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // new 方式，非字面量
+      const obj1 = new Object();
+
+      let name = "conanan";
+      let age = 18;
+
+      // ES5
+      const obj2 = {
+        name: name,
+        age: age,
+        eat: function () {
+          console.log("eat");
+        },
+      };
+      console.log(obj2);
+
+      // ES6
+      const obj3 = {
+        name,
+        age,
+        eat() {
+          console.log("eat");
+        },
+      };
+      console.log(obj3);
+    </script>
+  </body>
+</html>

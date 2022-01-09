@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <h2>{{message}}</h2>
+      <h2>{{message}}李银河</h2>
+      <!-- 表达式 -->
+      <h2>{{lastName + firstName}}</h2>
+      <h2>{{lastName + " "+firstName}}</h2>
+      <h2>{{lastName}}@{{firstName}}</h2>
+      <h2>{{count*2}}</h2>
+    </div>
+
+    <script src="/lib/vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          message: "你好！",
+          firstName: "三",
+          lastName: "张",
+          count: 100,
+        },
+      });
+    </script>
+  </body>
+</html>

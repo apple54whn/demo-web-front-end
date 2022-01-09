@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Title</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <button v-on:click="counter1 += 1">button1</button>
+      <p>The button1 above has been clicked {{ counter1 }} times.</p>
+
+      <!-- 不传递参数 -->
+      <button @click="increment2">button2</button>
+      <p>The button2 above has been clicked {{ counter2 }} times.</p>
+
+      <!-- 传递event -->
+      <button @click="increment3">button3</button>
+      <p>The button3 above has been clicked {{ counter3 }} times.</p>
+
+      <!-- 传递参数 -->
+      <button @click="increment4(5)">button4</button>
+      <p>The button4 above has been clicked {{ counter4 }} times.</p>
+
+      <!-- 传递参数+event -->
+      <button @click="increment5(5,$event)">button5</button>
+      <p>The button5 above has been clicked {{ counter5 }} times.</p>
+    </div>
+
+    <script src="/lib/vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          counter1: 0,
+          counter2: 0,
+          counter3: 0,
+          counter4: 0,
+          counter5: 0,
+        },
+        methods: {
+          // 不传递参数
+          increment2() {
+            this.counter2++;
+          },
+          // 传递event
+          increment3(event) {
+            this.counter3++;
+            // `event` 是原生 DOM 事件
+            if (event) {
+              console.log(event);
+              alert(event.target.tagName);
+            }
+          },
+          // 传递参数
+          increment4(num) {
+            alert(num);
+            this.counter4++;
+          },
+          // 传递参数+event
+          increment5(num, event) {
+            alert(num);
+            this.counter5++;
+            // `event` 是原生 DOM 事件
+            if (event) {
+              console.log(event);
+              alert(event.target.tagName);
+            }
+          },
+        },
+      });
+
+      // 也可以用 JavaScript 直接调用方法。一般不用
+      // vm.increment();
+    </script>
+  </body>
+</html>

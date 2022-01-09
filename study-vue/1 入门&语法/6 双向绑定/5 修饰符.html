@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Title</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <input type="text" v-model.lazy="username" />{{username}}
+      <hr />
+      <input type="number" v-model.number="age" />{{age}} {{typeof age}}
+      <hr />
+      <input type="text" v-model.trim="name" />{{name}}
+    </div>
+
+    <script src="/lib/vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          username: "Hello",
+          age: 0,
+          name: "",
+        },
+        methods: {},
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>计数器</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <h1>当前计数{{count}}</h1>
+      <!-- <button @click='count++'>-</button>也可这样写，‘’中当作方法中写即可，但不推荐 -->
+      <button @click="decrement">-</button>
+      <button @click="increment">+</button>
+    </div>
+
+    <script src="./lib/vue.js"></script>
+    <script>
+      // vue.js文件中定义了 Vue 对象，使用时可以 new 构造出，并且它还有参数（对象类型）
+      const vm = new Vue({
+        el: "#app",
+        // 声明式编程（声明式渲染），不再使用命令式
+        data: {
+          count: 0,
+        },
+        methods: {
+          // 方法不推荐使用“箭头函数”，因为不能传递 this 对象
+          increment: function (e) {
+            this.count++;
+            // 默认方法会传递对象e，包含 MouseEvent 对象，其中有 target 属性包含了触发该事件的元素
+            // 但是若上述 HTML 中改为 @click='sub()' 则不包含该对象
+            console.log(e);
+          },
+          // ES6 对象字面量增强写法
+          decrement() {
+            this.count--;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

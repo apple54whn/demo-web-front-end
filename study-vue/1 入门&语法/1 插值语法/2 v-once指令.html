@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Title</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <!-- 单个元素 -->
+      <h2>This will change: {{message}}</h2>
+      <h2 v-once>This will never change: {{message}}</h2>
+
+      <!-- 有子元素 -->
+      <div>
+        <h2>{{message}}</h2>
+      </div>
+      <div v-once>
+        <h2>{{message}}</h2>
+      </div>
+
+      <!-- 组件 -->
+      <my-component v-once :comment="message"></my-component>
+      <my-component :comment="message"></my-component>
+
+      <!-- `v-for` 指令-->
+      <ul>
+        <li v-for="i in list" :key="i">{{i}}</li>
+      </ul>
+      <ul>
+        <li v-for="i in list" :key="i" v-once>{{i}}</li>
+      </ul>
+    </div>
+
+    <script src="/lib/vue.js"></script>
+    <script>
+      // 这里写的组件必须在 new Vue() 前定义！
+      Vue.component("my-component", {
+        data: function () {
+          return {
+            count: 0,
+          };
+        },
+        props: {
+          comment: "",
+        },
+        template: "<h1>{{comment}} my-component</h1>",
+      });
+
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          message: "Test 1",
+          list: [1, 2, 3],
+        },
+        methods: {},
+      });
+    </script>
+  </body>
+</html>

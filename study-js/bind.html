@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function sum() {
+      let sum = 0
+      for (let i = 0; i < arguments.length; i++) {
+        sum += arguments[i]
+      }
+      // 最终和存储在该函数上下文对象中
+      this.result = sum
+    }
+
+    const ninja1 = {}
+    const ninja2 = {}
+    const ninja3 = {}
+
+    sum.call(ninja1, 1, 2, 3, 4, 5)
+    sum.apply(ninja2, [6, 7, 8, 9, 10])
+    // 所有函数均可访问bind方法，可以创建并返回一个新函数，并绑定在传入的对象上，直接调用。也可以使用函数表达式
+    sum.bind(ninja3, 2, 4, 6, 8, 10)()
+    console.log(ninja1.result);// 15
+    console.log(ninja2.result);// 40
+    console.log(ninja3.result);// 30
+  </script>
+</body>
+
+</html>

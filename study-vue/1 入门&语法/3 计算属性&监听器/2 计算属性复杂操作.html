@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue</title>
+  </head>
+
+  <body>
+    <div id="app">
+      总价：{{totalPrice}}
+    </div>
+
+    <script src="/lib/vue.js"></script>
+    <script>
+      // vue.js文件中定义了 Vue 对象，使用时可以 new 构造出，并且它还有参数（对象类型）
+      const vm = new Vue({
+        el: "#app",
+        // 声明式编程（声明式渲染），不再使用命令式
+        data: {
+          books: [
+            { id: 1, name: "Java", price: 110 },
+            { id: 2, name: "Kotlin", price: 120 },
+            { id: 3, name: "Clojure", price: 112 },
+            { id: 4, name: "JVM", price: 200 },
+          ],
+        },
+        methods: {},
+        computed: {
+          totalPrice() {
+            let totalPrice = 0;
+            this.books.forEach((item) => {
+              totalPrice += item.price;
+            });
+            return totalPrice;
+          },
+          totalPrice2: function () {
+            let totalPrice = 0;
+            this.books.forEach((item) => {
+              totalPrice += item.price;
+            });
+            return totalPrice;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

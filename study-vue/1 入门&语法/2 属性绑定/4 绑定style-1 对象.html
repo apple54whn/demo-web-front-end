@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Title</title>
+    <style></style>
+  </head>
+
+  <body>
+    <div id="app">
+      <!-- 写死 -->
+      <h2 :style="{fontSize: '16px'}">{{message}}</h2>
+      <!-- 动态 -->
+      <h2 :style="{fontSize: finalSize1}">{{message}}</h2>
+      <h2 :style="{fontSize: finalSize2 + 'px', backgroundColor: finalBgc}">
+        {{message}}
+      </h2>
+      <!-- 方法 -->
+      <h2 :style="myStyleMethod()">
+        {{message}}
+      </h2>
+      <!-- 计算属性 -->
+      <h2 :style="myStyleComputed">
+        {{message}}
+      </h2>
+    </div>
+
+    <script src="/lib/vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          message: "Hello",
+          finalSize1: "24px",
+          finalSize2: "24",
+          finalBgc: "skyblue",
+        },
+        computed: {
+          myStyleComputed: function () {
+            return {
+              fontSize: this.finalSize2 + "px",
+              backgroundColor: this.finalBgc,
+            };
+          },
+        },
+        methods: {
+          // ES6 对象字面量增强写法
+          myStyleMethod() {
+            return {
+              fontSize: this.finalSize2 + "px",
+              backgroundColor: this.finalBgc,
+            };
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

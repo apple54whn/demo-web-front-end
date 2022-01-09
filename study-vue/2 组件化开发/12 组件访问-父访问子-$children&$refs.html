@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Title</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <my-component ref="a"></my-component>
+      <my-component></my-component>
+      <button @click="btnClick">父组件按钮</button>
+    </div>
+
+    <template id="myComponent">
+      <div>我是子组件</div>
+    </template>
+
+    <script src="/lib/vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          message: "Hello",
+        },
+        methods: {
+          btnClick() {
+            // $children，是数组，使用很少
+            // console.log(this.$children);
+            // this.$children.forEach((child) => {
+            //   child.showMessage();
+            //   console.log(child.message);
+            // });
+            // $refs，是对象，默认为空，只有有ref属性的才会放入该对象中
+            console.log(this.$refs.a);
+            console.log(this.$refs["a"]);
+            this.$refs.a.showMessage();
+            console.log(this.$refs.a.message);
+          },
+        },
+        components: {
+          MyComponent: {
+            template: "#myComponent",
+            data() {
+              return {
+                message: "Hello",
+              };
+            },
+            methods: {
+              showMessage() {
+                console.log("showMessage");
+              },
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

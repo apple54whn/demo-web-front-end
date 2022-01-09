@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <title>开始使用 layui</title>
+    <link rel="stylesheet" href="./lib/layui/layui-v2.6.8/css/layui.css" />
+    <style>
+      body .demo-class .layui-layer-title {
+        background: rgb(131, 212, 236);
+        color: #fff;
+        border: none;
+      }
+
+      body .demo-class .layui-layer-btn .layui-layer-btn0 {
+        background: rgb(16, 167, 236);
+      }
+      body .demo-class .layui-layer-btn .layui-layer-btn1 {
+        background: rgb(173, 195, 206);
+      }
+
+      /* body .demo-class .layui-layer-btn .mask {
+        position: absolute;
+        width: 228px;
+        height: 270px;
+        background: rgba(0, 0, 0, 0.4);
+      } */
+    </style>
+  </head>
+  <body>
+    <!-- 你的 HTML 代码 -->
+
+    <button type="button" class="layui-btn layui-btn-normal" id="add">
+      add
+    </button>
+
+    <script src="./lib/layui/layui-v2.6.8/layui.js"></script>
+    <script>
+      layui.use(['layer', 'form'], function () {
+        var layer = layui.layer,
+          form = layui.form,
+          $ = layui.$
+
+        const addEl = document.getElementById('add')
+        addEl.addEventListener('click', function () {
+          layer.open({
+            type: 2,
+            area: ['90%', '90%'],
+            fixed: false, //不固定
+            maxmin: true,
+            content: 'layer/add.html?id=666',
+            btn: ['确定', '取消'],
+            skin: 'demo-class',
+            success: function (layero, index) {
+              // layer 的 success 会在 onload 执行后执行，此时HTMLS都渲染完毕！JS不一定，有时JS（按顺序）执行时间太长。
+              // 所以这里传递复杂参数还是得使用 子页面DOM存储，或者在子页面调用 parent 处理 DOM或变量或方法
+              console.log('success')
+              var iframeWin = window[layero.find('iframe')[0]['name']] //得到iframe页的窗口对象，执行iframe页的方法
+              // 这里的method.transferData可能都没有执行到，会找不到！！！
+              iframeWin.method.transferData({ id: 666, name: 'conanan' })
+              // layer.iframeAuto(index)
+            },
+            yes: function (index, layero) {
+              // var index2 = layer.load(2, {
+              //   id: '9sfsfs99999fs',
+              //   area: ['1500px', '100px'],
+              //   zIndex: 99999999,
+              // })
+              var iframeWin = window[layero.find('iframe')[0]['name']] //得到iframe页的窗口对象，执行iframe页的方法
+              // 需要防抖函数来保证不被重复点击
+              const returnData = iframeWin.method.saveData()
+              console.log('returnData', returnData)
+              console.log('haaaaaaaaaaaaaaaaa')
+              // layer.close(index2)
+              return false
+            },
+          })
+        })
+      })
+    </script>
+  </body>
+</html>

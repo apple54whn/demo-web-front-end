@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Title</title>
+    <style>
+      .active {
+        color: red;
+      }
+
+      .underline {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      class数组写死：
+      <span :class="['active','underline']">{{message}}</span><br />
+      class数组绑定：
+      <span :class="[active,underline]">{{message}}</span><br />
+
+      class数组方法绑定：
+      <span :class="myClassMthod()">{{message}}</span><br />
+      class数组计算属性绑定：
+      <span :class="myClassCompute">{{message}}</span><br />
+      多个条件 class：
+      <span :class="[active, { class3: is3, class4: is4 }]"></span>
+    </div>
+
+    <script src="/lib/vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          message: "Hello",
+          active: "class1",
+          underline: "class2",
+          is3: true,
+          is4: false,
+        },
+        computed: {
+          myClassCompute: function () {
+            return [this.active, this.underline];
+          },
+        },
+        methods: {
+          // ES6 对象字面量增强写法
+          myClassMthod() {
+            return [this.active, this.underline];
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

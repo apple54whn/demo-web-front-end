@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Title</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <!-- 单个 -->
+      <label for="agree">同意协议</label>
+      <input type="checkbox" name="agree" id="agree" v-model="agree" />
+      <!-- name 可以省略 -->
+      <button :disabled="!agree">下一步</button>
+      <br />
+      <h2>{{agree}}</h2>
+
+      <hr />
+
+      <!-- 多个 -->
+      <input
+        type="checkbox"
+        name="hobby"
+        id="hobby"
+        v-model="hobby"
+        value="唱"
+      />唱
+      <input
+        type="checkbox"
+        name="hobby"
+        id="hobby"
+        v-model="hobby"
+        value="跳"
+      />跳
+      <input
+        type="checkbox"
+        name="hobby"
+        id="hobby"
+        v-model="hobby"
+        value="篮球"
+      />篮球
+      <!-- name 可以省略 -->
+      <br />
+      <h2>{{hobby}}</h2>
+      <hr />
+
+      <!-- 真实开发 -->
+      <label v-for="(item,index) in originHobbies" :for="item">
+        <input
+          type="checkbox"
+          :id="item"
+          name="selectedHobbies"
+          :value="item"
+          v-model="selectedHobbies"
+        />{{item}}
+      </label>
+      <h2>{{selectedHobbies}}</h2>
+    </div>
+
+    <script src="/lib/vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          agree: false,
+          hobby: [],
+          // 真实开发
+          originHobbies: ["唱", "跳", "篮球", "rap"],
+          selectedHobbies: [],
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Title</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <!-- 3 使用组件 -->
+      <!-- 组件必须挂载在某个 Vue 实例下，否则不生效 -->
+      <my-component1></my-component1>
+      <div><my-component2></my-component2></div>
+    </div>
+
+    <script src="/lib/vue.js"></script>
+    <script>
+      // 2 注册组件（该方式组册的为全局组件，意味着可以在多个 Vue 实例下使用）。底层还是调用Vue.extend()
+      // 调用 Vue.component() 是将刚才的组件构造器注册为一个全局组件，并给它起一个组件的标签名称
+      Vue.component("my-component1", {
+        template: `
+            <div>
+                <h2>标题1</h2>
+                <p>内容1</p>
+            </div>`,
+      });
+
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          message: "Hello",
+        },
+        components: {
+          "my-component2": {
+            template: `
+            <div>
+                <h2>标题2</h2>
+                <p>内容2</p>
+            </div>`,
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

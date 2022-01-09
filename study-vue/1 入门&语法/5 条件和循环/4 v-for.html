@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Title</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <!-- 便利对象，获取 value -->
+      <ul>
+        <li v-for="value in info">{{value}}</li>
+      </ul>
+
+      <!-- 便利对象，获取 (value,key) -->
+      <ul>
+        <li v-for="(value,key) in info">{{value}}-{{key}}</li>
+      </ul>
+
+      <!-- 便利对象，获取 (value,key,index) -->
+      <ul>
+        <li v-for="(value,key,index) in info">{{value}}-{{key}}-{{index}}</li>
+      </ul>
+
+      <!-- 便利数组，获取 value -->
+      <ul>
+        <li v-for="item in infoList">
+          {{item.name}}-{{item.age}}-{{item.sex}}
+        </li>
+      </ul>
+
+      <!-- 便利数组，获取  (value,index)  -->
+      <ul>
+        <li v-for="(item,index) in infoList">
+          {{item.name}}-{{item.age}}-{{item.sex}}-{{index}}
+        </li>
+      </ul>
+    </div>
+
+    <script src="/lib/vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          message: "Hello",
+          info: {
+            name: "conanan",
+            age: 18,
+            sex: "male",
+          },
+          infoList: [
+            {
+              name: "conanan",
+              age: 18,
+              sex: "male",
+            },
+            {
+              name: "zhangsan",
+              age: 33,
+              sex: "male",
+            },
+            {
+              name: "lisi",
+              age: 44,
+              sex: "female",
+            },
+          ],
+        },
+        methods: {},
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Document</title>
+</head>
+
+<body>
+<div id="container" class="drag-sort-enable">
+    <div id="1" draggable="true"><span>1</span><input type="text">
+        <button>del dom</button>
+        <button>UP</button>
+        <button onclick="down()">DOWN</button>
+    </div>
+    <div id="2" draggable="true"><span>2</span><input type="text">
+        <button>del dom</button>
+        <button>UP</button>
+        <button onclick="down()">DOWN</button>
+    </div>
+
+</div>
+
+
+<div id="parentElement">
+    <span id="childElement">foo bar</span>
+</div>
+
+<script>
+    function down() {
+        let curr = event.target
+        curr.parentNode.parentNode.insertBefore(curr.parentNode.nextSibling, curr.parentNode)
+    }
+
+
+    // 创建要插入的节点
+    var newNode = document.createElement("span");
+    newNode.innerText = '666'
+
+    // 获得父节点的引用
+    var parentDiv = document.getElementById("childElement").parentNode;
+
+    //实验一：referenceNode 存在 --> 正确返回
+    var sp2 = document.getElementById("childElement");
+    parentDiv.insertBefore(newNode, sp2);
+    //实验一结束
+
+</script>
+</body>
+</html>

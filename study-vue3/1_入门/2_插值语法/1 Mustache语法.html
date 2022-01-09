@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <template id="temp">
+      <h2>{{message}}</h2>
+      <h2>{{message}}李银河</h2>
+      <!-- 表达式 -->
+      <h2>{{lastName + firstName}}</h2>
+      <h2>{{lastName + " "+firstName}}</h2>
+      <h2>{{lastName}}@{{firstName}}</h2>
+      <h2>{{count*2}}</h2>
+    </template>
+
+    <script>
+      const options = {
+        template: '#temp', //
+        data() {
+          return {
+            message: '你好！',
+            firstName: '三',
+            lastName: '张',
+            count: 100,
+          }
+        },
+        methods: {},
+      }
+
+      const vm = Vue.createApp(options).mount('#app')
+    </script>
+  </body>
+</html>

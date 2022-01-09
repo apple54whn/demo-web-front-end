@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Title</title>
+    <style>
+      .active {
+        color: red;
+      }
+
+      .underline {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      class对象写死：
+      <span :class="{active: true, underline: false}">{{message}}</span><br />
+      class对象绑定：
+      <span :class="{active: isActive, underline: isUnderline}"
+        >{{message}}</span
+      >
+      <button @click="changeActive">切换 active</button><br />
+      class对象方法绑定：
+      <span :class="myClassMthod()">{{message}}</span><br />
+      class对象计算属性绑定：
+      <span :class="myClassCompute">{{message}}</span><br />
+    </div>
+
+    <script src="/lib/vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          message: "Hello",
+          isActive: true,
+          isUnderline: false,
+        },
+        computed: {
+          // ES6 对象字面量增强写法
+          myClassCompute() {
+            return { active: this.isActive, underline: this.isUnderline };
+          },
+        },
+        methods: {
+          // ES6 对象字面量增强写法
+          changeActive() {
+            this.isActive = !this.isActive;
+          },
+          // ES6 对象字面量增强写法
+          myClassMthod() {
+            return { active: this.isActive, underline: this.isUnderline };
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

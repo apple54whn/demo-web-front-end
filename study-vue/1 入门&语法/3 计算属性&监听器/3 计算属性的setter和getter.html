@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Title</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <!-- 计算属性 -->
+      <h2>{{fullNameComputed}}</h2>
+    </div>
+
+    <script src="/lib/vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          firstName: "Steven",
+          lastName: "Jobs",
+        },
+        computed: {
+          // 1 简写
+          //   fullNameComputed() {
+          //     console.log("fullName computed");
+          //     return this.firstName + " " + this.lastName;
+          //   },
+
+          // 2 实际上，一般计算属性无需写setter方法，再简化就成为上述简写形式了
+          fullNameComputed: {
+            get: function () {
+              console.log("getter");
+              return this.firstName + " " + this.lastName;
+            },
+            set: function (value) {
+              console.log("setter", value);
+              var [firstName, lastName] = value.split(" ");
+              this.firstName = firstName;
+              this.lastName = lastName;
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

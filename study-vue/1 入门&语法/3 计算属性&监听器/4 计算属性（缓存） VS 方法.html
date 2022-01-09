@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Title</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <!-- 拼接 -->
+      <h2>{{ firstName + " " + lastName}}</h2>
+      <!-- 方法 -->
+      <h2>{{fullNameMethod()}}</h2>
+      <h2>{{fullNameMethod()}}</h2>
+      <h2>{{fullNameMethod()}}</h2>
+
+      <!-- 计算属性 -->
+      <h2>{{fullNameComputed}}</h2>
+      <h2>{{fullNameComputed}}</h2>
+      <h2>{{fullNameComputed}}</h2>
+
+      {{now}}
+    </div>
+
+    <script src="/lib/vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          firstName: "Steven",
+          lastName: "Jobs",
+        },
+        computed: {
+          // ES6 对象字面量增强写法
+          fullNameComputed() {
+            console.log("fullName computed");
+            return this.firstName + " " + this.lastName;
+          },
+          now: function () {
+            return Date.now();
+          },
+        },
+        methods: {
+          // ES6 对象字面量增强写法
+          fullNameMethod() {
+            console.log("fullName methods");
+            return this.firstName + " " + this.lastName;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

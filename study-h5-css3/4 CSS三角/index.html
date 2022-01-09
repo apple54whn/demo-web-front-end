@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSS三角</title>
+    <style>
+        .jd {
+            position: relative;
+            width: 100px;
+            height: 200px;
+            background-color: pink;
+            margin: 100px auto;
+        }
+
+        .jd span {
+            position: absolute;
+            left: 70px;
+            top: -20px;
+            width: 0;
+            height: 0;
+            border: 10px solid transparent;
+            border-bottom: 10px solid pink;
+        }
+
+        .test {
+            width: 0;
+            height: 0;
+            border-top: 100px solid transparent;
+            /* border-left: 50px solid green; */
+            border-right: 50px solid blue;
+        }
+
+        .jd2 {
+            width: 100px;
+            height: 30px;
+        }
+
+        .jd2 .left {
+            width: 60%;
+            background-color: red;
+        }
+
+        .price {
+            width: 160px;
+            height: 24px;
+            border: 1px solid red;
+            margin: 100px auto;
+            line-height: 24px;
+        }
+
+        .left {
+            float: left;
+            width: 90px;
+            height: 100%;
+            background-color: red;
+            color: #fff;
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="jd">
+        <span></span>
+    </div>
+
+    <div class="test"></div>
+
+    <div class="jd2">
+        <div class="left"></div>
+    </div>
+
+    <div class="price">
+        <span class="left">$14999</span>
+        <span class="right">$18999</span>
+    </div>
+
+</body>
+
+</html>

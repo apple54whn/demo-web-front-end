@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Title</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <img src="https://cn.vuejs.org/images/logo.png" alt="" />
+      <!-- 内联字符串拼接，fileName为变量 -->
+      <img :src="'https://cn.vuejs.org/images/' + fileName" />
+      <!-- 字符串模板 -->
+      <img :src="`https://cn.vuejs.org/images/${fileName}`" />
+    </div>
+
+    <script src="/lib/vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          message: "Hello",
+          fileName: "logo.png",
+        },
+      });
+    </script>
+  </body>
+</html>

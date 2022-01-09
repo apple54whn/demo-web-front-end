@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Title</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <my-component
+        v-bind:c-message="message"
+        :cmovies="movies"
+        :author="author"
+        :student="student"
+      ></my-component>
+      <hr />
+      <my-component></my-component>
+    </div>
+
+    <template id="myComponent">
+      <!-- template中只能包含一个root元素 -->
+      <div>
+        <div>{{cMessage}}</div>
+        <ul>
+          <li v-for="movie in cmovies">{{movie}}</li>
+        </ul>
+        <div>{{author}}</div>
+        <div>{{student}}</div>
+      </div>
+    </template>
+
+    <script src="/lib/vue.js"></script>
+    <script>
+      class Person {
+        constructor(firstName, lastName) {
+          this.firstName = firstName;
+          this.lastName = lastName;
+        }
+      }
+
+      function Person2(firstName, lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+      }
+
+      // 大驼峰是为了方便注册组件时使用ES6对象语法
+      const MyComponent = {
+        template: "#myComponent",
+        data() {
+          return {};
+        },
+        // 1 字符串数组，不常用
+        // props: ["cmessage", "cmovies"],
+
+        // 2 对象，常用
+        // 2.1 类型限制
+        // props: {
+        //   cmessage: [String, Number], // 多个类型
+        //   cmovies: Array,
+        // },
+
+        // 2.2 带有默认值，必传值
+        props: {
+          // 驼峰命名时，v-bind处必须使用c-message来绑定，其他地方可以使用驼峰
+          cMessage: {
+            type: [String, Number], // 多个类型
+            default: "Hello MyComponent",
+            required: true, // 没有提供值会报错，但是还是会先显示默认值
+            // 自定义验证传入的值
+            validator(value) {
+              console.log(value);
+              // 传入的值必须为数组其中一个
+              return ["Hello", "World"].indexOf(value) > -1;
+            },
+          },
+          cmovies: {
+            type: Array,
+            // 新版本在 default 是 Object 或 Array 时，返回值必须是 function
+            default() {
+              return ["业火的向日葵", "漆黑的追踪者"];
+            },
+            required: true, // 没有提供值会报错，但是还是会先显示默认值
+          },
+          author: {
+            // 自定义类型
+            type: Person,
+          },
+          student: {
+            // 自定义类型
+            type: Person,
+          },
+        },
+      };
+
+      const author = new Person("san", "zhang");
+      const student = new Person2("si", "li");
+
+      // root 根组件
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          message: "Hello",
+          movies: [
+            "引爆摩天楼",
+            "迷宫的十字路口",
+            "月光下的魔术师",
+            "沉默的十五分钟",
+          ],
+          author,
+          student,
+        },
+        methods: {},
+        components: {
+          MyComponent,
+        },
+      });
+    </script>
+  </body>
+</html>

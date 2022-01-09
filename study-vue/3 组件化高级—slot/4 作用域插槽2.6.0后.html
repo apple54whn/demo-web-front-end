@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Title</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <!-- 正常工作时显示 li -->
+      <current-user :user="outerUser"></current-user>
+
+      <!-- 代码不会正常工作，因为只有 <current-user> 组件可以访问到 user(props或data中，一般都会封装在props中) 而我们提供的内容是在父级渲染的。 -->
+      <!-- <current-user :user="outerUser">
+        {{ user.firstName }}
+      </current-user> -->
+
+      <current-user :user="outerUser">
+        <!-- 如下三种方式写都可以 -->
+        <!-- <template v-slot:default="props"> -->
+        <!-- <template v-slot="props"> -->
+        <!-- props 名称可以自定义，推荐使用 props，由于子组件传递过来的值一般都在 props 中。user 是在模版中定义的 attribute -->
+        <template #default="props">
+          {{ props.user.firstName }}
+        </template>
+      </current-user>
+    </div>
+
+    <template id="currentUser">
+      <div>
+        <!-- :user="user" 中第一个是作为 attribute 可以自定义（在使用时必须为该 attr），第二个为绑定的子组件中的 props 或 data 数据，一般为 props 的数据 -->
+        <slot :user="user">{{ user.lastName }}</slot>
+      </div>
+    </template>
+
+    <script src="/lib/vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          message: "Hello",
+          outerUser: {
+            firstName: "si",
+            lastName: "li",
+          },
+        },
+        methods: {},
+        components: {
+          CurrentUser: {
+            template: "#currentUser",
+            props: {
+              user: {
+                type: Object,
+                default() {
+                  return {
+                    firstName: "san",
+                    lastName: "zhang",
+                  };
+                },
+                required: true,
+              },
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

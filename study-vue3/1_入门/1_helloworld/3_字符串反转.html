@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Hello World</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+<div id="root">
+    <div>{{content}}</div>
+    <button @click="reverse">反转</button>
+    <br/>
+    <div v-show='show'>{{content}}</div>
+    <button @click="show = !show">显示/隐藏</button>
+</div>
+
+<script>
+    const options = {
+        // 这里写不好格式化
+        // template: `
+        // <div>{{content}}</div>
+        // <button @click="reverse">反转</button>
+        // <br/>
+        // <div v-show='show'>{{content}}</div>
+        // <button @click="show = !show">显示/隐藏</button>
+        // `,
+        data() {
+            return {
+                content: 'hello world',
+                show: true,
+            }
+        },
+        methods: {
+            reverse() {
+                this.content = this.content.split('').reverse().join('')
+            },
+        },
+    }
+
+    // Vue.createApp 创建 Vue 应用
+    // mount 装载到哪里，即在 id = root 的 html 中使用 vue
+    Vue.createApp(options).mount('#root')
+</script>
+</body>
+</html>

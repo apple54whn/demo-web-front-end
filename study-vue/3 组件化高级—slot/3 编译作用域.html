@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Title</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <!-- 凡是在 Vue 实例管理的 el 中的，都是在 Vue 实例中 -->
+      <my-component v-show="isShow"> </my-component>
+      <hr />
+    </div>
+
+    <template id="myComponent">
+      <!-- 只有在组件作用域中写的，才算是组件作用域，在组件中 -->
+      <div>
+        <h2>组件</h2>
+        <button v-show="isShow">按钮</button>
+      </div>
+    </template>
+
+    <script src="/lib/vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          message: "Hello",
+          isShow: true,
+        },
+        methods: {},
+        components: {
+          MyComponent: {
+            template: "#myComponent",
+            data() {
+              return {
+                isShow: false,
+              };
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Title</title>
+    <style>
+      .active {
+        color: red;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <ul>
+        <li
+          v-for="(item,index) in movies"
+          @click="changeColor(index)"
+          :class="{active: currentIndex === index}"
+        >
+          {{index}}-{{item}}
+        </li>
+      </ul>
+    </div>
+
+    <script src="/lib/vue.js"></script>
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          movies: ["名侦探柯南", "怪盗基德", "犬夜叉", "龙珠"],
+          currentIndex: 0, // 当前选中的行数
+        },
+        methods: {
+          // ES6 对象字面量增强写法
+          changeColor(index) {
+            console.log(index);
+            this.currentIndex = index;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

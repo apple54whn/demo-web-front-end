@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Title</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <!-- 3 使用组件 -->
+      <!-- 组件必须挂载在某个 Vue 实例下，否则不生效 -->
+      <my-component></my-component>
+      <div><my-component></my-component></div>
+    </div>
+    <!-- 不生效 -->
+    <my-component></my-component>
+
+    <div id="app2">
+      <!-- 3 使用组件 -->
+      <!-- 组件必须挂载在某个 Vue 实例下，否则不生效 -->
+      <my-component></my-component>
+      <div><my-component></my-component></div>
+    </div>
+
+    <script src="/lib/vue.js"></script>
+    <script>
+      // 1 创建组件构造器。含义如下：
+      // 调用Vue.extend()创建的是一个组件构造器
+      // 通常在创建组件构造器时，传入template代表我们自定义的模板，该模板就是在使用到组件的地方，要显示的HTML代码
+      // 事实上，该写法在 Vue2.x的文档中几乎已经看不到了，它会直接使用下面要讲到的语法糖
+      const myComponent = Vue.extend({
+        template: `
+            <div>
+                <h2>标题</h2>
+                <p>内容1</p>
+                <p>内容2</p>
+            </div>`,
+      });
+
+      // 2 注册组件（该方式组册的为全局组件，意味着可以在多个 Vue 实例下使用）
+      // 调用 Vue.component() 是将刚才的组件构造器注册为一个全局组件，并给它起一个组件的标签名称
+      Vue.component("my-component", myComponent);
+
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          message: "Hello",
+        },
+      });
+
+      const vm2 = new Vue({
+        el: "#app2",
+        data: {
+          message: "Hello",
+        },
+      });
+    </script>
+  </body>
+</html>

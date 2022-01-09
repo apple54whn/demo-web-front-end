@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue</title>
+    <style>
+      table {
+        /* 合并细线边框 */
+        border-collapse: collapse;
+        /* 单元格之间水平、垂直距离，与 border-collapse 冲突，不常用 */
+        /*border-spacing: 10px 20px;*/
+        /* 表格居中 */
+        margin: 100px auto;
+      }
+      th,
+      td {
+        /* 边框 */
+        border: 1px solid skyblue;
+        /* 内边距 */
+        padding: 20px;
+        /* 让td居中，th本来就是居中的 */
+        text-align: center;
+        /* 默认情况下元素在th,td中是垂直居中的，也可以通过 vertical-align 来修改*/
+        /* 由此可得，对一个父元素设置 display: table-cell，可以直接使用 vertical-align 来垂直居中*/
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <div v-if="books.length >= 1">
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>书籍名称</th>
+              <th>出版日期</th>
+              <th>价格</th>
+              <th>购买数量</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(book,index) in books" :key="book.id">
+              <td>{{book.id}}</td>
+              <td>{{book.name}}</td>
+              <td>{{book.time}}</td>
+              <!-- <td>{{'¥'+book.price.toFixed(2)}}</td> -->
+              <!-- 这么多地方使用，可以复用 -->
+              <!-- 方式1:方法。计算属性也可以 -->
+              <!-- <td>{{formartPrice(book.price)}}</td> -->
+              <!-- 方式2:过滤器 -->
+              <td>{{book.price | formartPrice}}</td>
+
+              <td>
+                <button @click="decrement(book)" :disabled="book.count === 1">
+                  -
+                </button>
+                {{book.count}}
+                <button @click="increment(book)">+</button>
+              </td>
+              <td><button @click="remove(index)">移除</button></td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- 总价：{{'¥'+totalPrice.toFixed(2)}} -->
+        <!-- 总价：{{formartPrice(totalPrice)}} -->
+        总价：{{totalPrice | formartPrice}}
+      </div>
+      <div v-else>
+        购物车为空
+      </div>
+    </div>
+
+    <script src="/lib/vue.js"></script>
+    <script>
+      // vue.js文件中定义了 Vue 对象，使用时可以 new 构造出，并且它还有参数（对象类型）
+      const vm = new Vue({
+        el: "#app",
+        // 声明式编程（声明式渲染），不再使用命令式
+        data: {
+          books: [
+            { id: 1, name: "Java", time: "2006-02", price: 110.0, count: 1 },
+            { id: 2, name: "Kotlin", time: "2016-03", price: 120.0, count: 1 },
+            { id: 3, name: "Clojure", time: "2008-12", price: 112.0, count: 1 },
+            { id: 4, name: "JVM", time: "2002-8", price: 200.0, count: 1 },
+          ],
+        },
+        methods: {
+          increment(book) {
+            book.count++;
+          },
+          decrement(book) {
+            // if (book.count === 1) {
+            //   return;
+            // }
+            book.count--;
+          },
+          remove(index) {
+            this.books.splice(index, 1);
+          },
+          formartPrice(price) {
+            return "¥" + price.toFixed(2);
+          },
+        },
+        computed: {
+          totalPrice() {
+            // let totalPrice = 0;
+            // this.books.forEach((item) => {
+            //   totalPrice += item.price * item.count;
+            // });
+            // return totalPrice;
+
+            return this.books.reduce((previous, current, index, arr) => {
+              return previous + current.price * current.count;
+            }, 0);
+          },
+        },
+        filters: {
+          formartPrice(price) {
+            return "¥" + price.toFixed(2);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
