@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hello World</title>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script src="../lib/vue@3.2.26.js"></script>
+    <script>
+      const options = {
+        // template中写么有提示，不方便。和#app不一样！，不能删掉#app
+        template: `
+          <button @click="decrement">-</button>
+          <span>{{counter}}</span>
+          <button @click="increment">+</button>
+        `,
+        data() {
+          return {
+            counter: 0,
+          }
+        },
+        methods: {
+          decrement() {
+            this.counter--
+          },
+          increment() {
+            this.counter++
+          },
+        },
+      }
+
+      // // Vue.createApp 创建 Vue 应用
+      // const app = Vue.createApp(options);
+      // // mount 装载到哪里，即在 id = root 的 html 中使用 vue
+      // const vm = app.mount('#root');
+
+      // 可以链式编程：
+      const vm = Vue.createApp(options).mount('#app')
+    </script>
+  </body>
+</html>

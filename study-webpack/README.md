@@ -1,3 +1,0 @@
-# study-webpack
-
-2
