@@ -19,6 +19,7 @@
     <router-link to="/about">About</router-link> |
     <router-link to="/user/conanan/id/10086">User</router-link> |
     <router-link to="/notfound/aa/bb/cc">NotFound</router-link> |
+    <router-link to="/login">登录</router-link> |
     <button @click="jumpToAbout">查看我！</button>
     <button @click="back">←</button>
     <button @click="forword">→</button>
