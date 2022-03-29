@@ -8,11 +8,11 @@ class Person {
   }
 
   eating() {
-    console.log(this.name + " eating")
+    console.log(this.name + ' eating')
   }
 }
 
-const p = new Person("why", 18)
+const p = new Person('why', 18)
 console.log(p.name)
 console.log(p.age)
 p.eating()

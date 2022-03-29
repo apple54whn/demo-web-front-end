@@ -19,9 +19,9 @@ function handleMessage(message: string | number | boolean) {
     case 'number':
       console.log('number处理方式处理message')
       break
-    case 'boolean':
-      console.log('boolean处理方式处理message')
-      break
+    // case 'boolean':
+    //   console.log('boolean处理方式处理message')
+    //   break
     default:
       const check: never = message // 仅仅作为编译时错误提示
   }
